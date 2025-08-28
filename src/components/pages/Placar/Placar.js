@@ -8,7 +8,7 @@ import style from "./placar.module.css"
                 style={{backgroundColor:`${color}`}}    
             >
                 <p 
-                    style={{fontSize:"65px", color:"white", fontFamily:"'Courier New', Courier, monospace"}}
+                    style={{fontSize:"50px", fontWeight:"bold",color:"white", fontFamily:"'Courier New', Courier, monospace"}}
                 >Time {i+1}</p>
                 <div 
                     className={`${style.placar_numero}`}

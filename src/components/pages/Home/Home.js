@@ -21,7 +21,7 @@ function Home(){
                     </LinkButton>
                 </div>
                 <div>
-                    <LinkButton to="/newproject" text="Cadastrar Jogadores">
+                    <LinkButton to="/cadastros" text="Cadastrar Jogadores">
                         <BiPlus size={50} color='#252a30'/>
                     </LinkButton>
                     <LinkButton to="/newproject" text="Ver os melhores">

@@ -17,14 +17,13 @@ function Navbar(){
                     <li className='item'> <Link to="/placar">
                     <MdScoreboard size={30}/>
                     Placar</Link> </li>
-                    {/* <li className='item'> <Link to="/projects">
+                    <li className='item'> <Link to="/cadastros">
                     <MdPeople size={30}/>
-                    Pessoas</Link></li>
-                    
+                    Cadastros</Link></li> 
                     <li className='item'>
-                     <Link to="/contact">
+                     <Link to="/classificacoes">
                      <MdLeaderboard size={30}/>
-                    Ranking</Link></li> */}
+                     Ranking</Link></li>
                 </ul> 
            </Container>
         </nav>
