@@ -1,0 +1,33 @@
+.placar_container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.placar_numero{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+.placar_numero p{
+    font-size: 140px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+.placar_numero input{
+    height: 100%;
+    font-size: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    border: none;
+    background-color: transparent;
+}
+.placar_banda{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
