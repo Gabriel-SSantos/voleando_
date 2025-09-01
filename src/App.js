@@ -6,6 +6,10 @@ import Navbar from './components/layout/Navbar'
 import Container from './components/layout/Container'
 import Ranking from './components/pages/Ranking/Ranking';
 import Placar from './components/pages/Placar/Placar'
+import PlacarConfig from './components/pages/Placar/PlacarConfig';
+import Vencedor from './components/pages/Placar/Vencedor';
+import Padrao from './components/pages/Padrao';
+import Times from './components/pages/MontarTimes/MontarTimes';
 
 function App() {
 
@@ -35,7 +39,6 @@ function App() {
     const location = useLocation();
     const rotasFull = ['/placar']
     const verificarRotas = rotasFull.includes(location.pathname)
-    console.log(verificarRotas)
     return (
       <>
         {!verificarRotas && <AppHeader/>}
@@ -43,8 +46,12 @@ function App() {
           <Routes>
             <Route exact path='/' Component={Home}></Route>
             <Route path='/placar' Component={Placar}></Route>
+            <Route path='/placarconfig' Component={PlacarConfig}></Route>
+            <Route path='/placarvencedor' Component={Vencedor}></Route>
             <Route path='/cadastros' Component={Cadastrar}></Route>
+            <Route path='/times' Component={Times}></Route>
             <Route exact path='/classificacoes' Component={Ranking}></Route>
+
           </Routes>
         </Container>
         <Navbar/>

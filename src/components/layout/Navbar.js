@@ -14,7 +14,7 @@ function Navbar(){
                     <li className='item'> <Link to="/"> 
                     <MdHome size={30}/>
                     Inicio</Link></li>
-                    <li className='item'> <Link to="/placar">
+                    <li className='item'> <Link to="/placarconfig">
                     <MdScoreboard size={30}/>
                     Placar</Link> </li>
                     <li className='item'> <Link to="/cadastros">

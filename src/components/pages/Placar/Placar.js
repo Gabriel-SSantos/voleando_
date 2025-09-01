@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import style from "./placar.module.css"
-
- const ButtonPnt = ({pnt, i,pontuar, retirarPonto,color})=>{
+import { useNavigate, useLocation } from "react-router-dom"
+ const ButtonPnt = ({nome,pnt, i,pontuar, retirarPonto,color})=>{
         return(
             <div 
                 className={`${style.placar_banda}`}
@@ -9,7 +9,7 @@ import style from "./placar.module.css"
             >
                 <p 
                     style={{fontSize:"50px", fontWeight:"bold",color:"white", fontFamily:"'Courier New', Courier, monospace"}}
-                >Time {i+1}</p>
+                >{nome}</p>
                 <div 
                     className={`${style.placar_numero}`}
                     
@@ -34,8 +34,20 @@ import style from "./placar.module.css"
 
 
 export default function Placar(){
+
+    const location = useLocation()
+    const dadosRecebido = location.state?.meustimes
+    const indices = location.state?.indices
+    console.log("Meus times tam: ",indices)
+    const [timesAtuais,setTimesAtuais] = useState(["time1","time2"])
+    const [meusTimes,setMeusTimes] = useState(["time1","time2"])
     const [time,setTime] = useState([0,0])
     const [pntVencedor,setPntVencedor] = useState(5)
+
+    let timeVencedor = -1
+
+    const navigate = useNavigate()
+   
     const pontuar = (i)=>{
         const atuliazar = time.map((ponto, index) =>{
             if(index === i){
@@ -57,7 +69,11 @@ export default function Placar(){
     }
     console.log(pntVencedor)
     useEffect(()=>{
-
+        if (dadosRecebido.length>0){
+            let v = [dadosRecebido[0],dadosRecebido[1]]
+            setTimesAtuais(v)
+            setMeusTimes(dadosRecebido)
+        }
         if(pntVencedor == 5 && (time[0] >= 1 && time[1] >= 1)){
             console.log("oba")
             setPntVencedor(7)
@@ -67,7 +83,13 @@ export default function Placar(){
             setPntVencedor(pntVencedor + 1)
         }
         else if(time[0] == pntVencedor  || time[1] == pntVencedor){
-            alert(`Time vencedor ${time[0]==pntVencedor? time[0]:time[1]}`)
+            timeVencedor = (time[0]==pntVencedor? 0:1)
+            alert(`Time vencedor ${timeVencedor}`)
+            
+            const timer = setTimeout(() => {
+                navigate('/placarvencedor',{state:{meustimes:meusTimes,vencedor:timeVencedor}})
+            }, 1000);
+            return () => clearTimeout(timer)
         } 
         console.log(time)
     },[time])
@@ -76,11 +98,13 @@ export default function Placar(){
            <ButtonPnt 
                 pnt={time[0]} i={0} 
                 pontuar={pontuar}
+                nome={timesAtuais[0]}
                 retirarPonto={retirarPonto}
                 color={"#0050D8"}
             />
            <ButtonPnt pnt={time[1]} 
                 i={1} 
+                nome={timesAtuais[1]}
                 pontuar={pontuar}
                 retirarPonto={retirarPonto}
                 color={"#D3B700"}

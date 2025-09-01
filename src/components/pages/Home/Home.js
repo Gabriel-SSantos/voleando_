@@ -16,7 +16,7 @@ function Home(){
                     <LinkButton to="/placar" text="Usar o placar">
                         <MdScoreboard size={50} color='#252a30'/>
                     </LinkButton>
-                    <LinkButton to="/newproject" text="Montar times">
+                    <LinkButton to="/times" text="Montar times">
                         <FaPeopleGroup size={50} color='#252a30'/>
                     </LinkButton>
                 </div>
@@ -24,12 +24,12 @@ function Home(){
                     <LinkButton to="/cadastros" text="Cadastrar Jogadores">
                         <BiPlus size={50} color='#252a30'/>
                     </LinkButton>
-                    <LinkButton to="/newproject" text="Ver os melhores">
+                    <LinkButton to="/classificacoes" text="Ver os melhores">
                         <TbTrophy size={50} color='#252a30'/>
                     </LinkButton>
                 </div>
                 <div>
-                    <LinkButton to="/newproject" text="Começar Novo Jogo">
+                    <LinkButton to="/padrao" text="Começar Novo Jogo">
                         <TbPlayVolleyball size={50} color='#252a30'/>
                     </LinkButton>
                 </div>

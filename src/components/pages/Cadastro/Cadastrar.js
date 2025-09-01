@@ -5,8 +5,13 @@ import { FaFemale } from 'react-icons/fa';
 import { FaMale } from 'react-icons/fa';
 import { BiTrash } from 'react-icons/bi'
 import { PiPencil } from 'react-icons/pi'
-import { BiX } from 'react-icons/bi';
-const Ficha = ({nome, nivel, genero})=>{
+
+import AddCadastro from './AddCadastro'
+import { BotaoCadastro } from './AddCadastro';
+
+import EditCadastro from './EditCadastro';
+
+const Ficha = ({nome, nivel, genero,id,edit,apagar})=>{
     return(
         <div className={`${style.card}`}>
                 <div>
@@ -17,102 +22,26 @@ const Ficha = ({nome, nivel, genero})=>{
                     <p>Nível: {nivel}</p>
                 </div>
             <div>
-                <PiPencil size={27} style={
-                {marginRight:"5px"}
-            }/>
-                <BiTrash size={27}/>
+                <PiPencil 
+                size={27} 
+                style={{marginRight:"5px"}}
+                onClick={()=>edit(id)}
+
+                />
+                <BiTrash size={27}
+                onClick={()=>apagar(id)}
+                />
             </div>
         </div>
     )
 }
-
-const BotaoCadastro=({cadastramento})=>{
-    return(
-        <div 
-            onClick={cadastramento}
-            className={`${style.botao}`}>
-            <p>Adicionar Novo</p>
-        </div>
-    )
-}
-
-const pegardados = ()=>{
-    const jogadores = JSON.parse(localStorage.getItem('jogadores')) || []
-    return jogadores
-}
-
-const salvar=({nome,nivel,genero})=>{
-    const jogadores = JSON.parse(localStorage.getItem('jogadores')) || []
-    jogadores.push({nome:nome,nivel:nivel,genero:genero})
-    localStorage.setItem('jogadores',JSON.stringify(jogadores))
-}
-
-const TelaCadastro=({cadastramento})=>{
-    const [nome,setNome] = useState("")
-    const [genero,setGenero] = useState("")
-    const [nivel,setNivel] = useState(5)
-    
-    const mudancaEstadoNome = (e)=>{
-        setNome(e.target.value)
-    }
-    const mudancaEstadoNivel = (e)=>{
-        setNivel(e.target.value)
-    }
-    const mudancaEstadoGenero = (e)=>{
-        setGenero(e.target.value)
-    }
-
-    console.log(`Nome:${nome}, genero: ${genero}, nivel${nivel}`)
-
-    return(
-    <div className={`${style.cad_box}`}>
-        <div style={{width:"100%",display:"flex",justifyContent:"flex-start"}}><p style={{fontSize:"15px",textAlign:"center"}}>Preencha o formulário para fazer o cadastro</p><BiX size={30} onClick={cadastramento}/></div>
-        
-        <div><p>Nome: </p><input 
-            type='text'
-            value={nome}
-            onChange={mudancaEstadoNome}
-            /></div>
-        <div
-            style={{display:"flex",alignItems:"center",width:"100%"}}
-        ><p>Gênero:</p><p style={{marginLeft:"4px"}}>Masculino</p><input 
-                value={"M"}
-                type='radio' 
-                name='genero'
-                onChange={mudancaEstadoGenero}
-            /> 
-            <p>Feminino </p><input 
-                value={"F"}
-                type='radio' 
-                name='genero'
-                onChange={mudancaEstadoGenero}
-            /></div>
-        <div><span>Nível de habilidade </span> 
-            <input 
-                type='number'
-                value={nivel}
-                onChange={mudancaEstadoNivel}
-                style={{width:"100px"}}
-            /><br/><span style={{color:"red",fontSize:"15px"}}>*Caso desconhecida, colocar 5</span></div>
-        
-        <button type='button'
-            className={`${style.button}`}
-            
-            onClick={()=>{
-                cadastramento()
-                salvar({nome:nome,genero:genero,nivel:nivel})}}
-        >Salvar</button>
-    </div>
-    )
-}
-
 
 
 export default function Cadastrar(){
     const [cadastros,setCadastros] = useState()
     const [cadastrar,setCadastrar] = useState(false)
     const [editavel,setEditavel] = useState(false)
-
+    const [editIndex,setEditIndex] = useState(-1)
     const ativarCadastramento = ()=>{
         setCadastrar(true)
     }
@@ -120,17 +49,28 @@ export default function Cadastrar(){
         setCadastrar(false)
     }
     
-    const ativarEdicao = ()=>{
-        setEditavel(true)
-    }
     const desativarEdicao = ()=>{
         setEditavel(false)
     }
-    
+    const indiceEdit=(i)=>{
+        setEditIndex(i)
+        setEditavel(true)
+    }
+
+    const Apagar = (i)=>{
+        let NovoVetor = []
+        cadastros.map((intem,index)=>{
+            if (index != i){
+                NovoVetor.push(intem)
+            }
+        })
+        localStorage.setItem('jogadores',JSON.stringify(NovoVetor))
+        setCadastros(NovoVetor)
+    }
 
     useEffect(()=>{
-        const jogadoresLista = JSON.parse(localStorage.getItem('jogadores'))
-        setCadastros(jogadoresLista)
+        const Lista = JSON.parse(localStorage.getItem('jogadores'))
+        setCadastros(Lista)
     },[cadastrar,editavel])
 
     return(
@@ -138,15 +78,19 @@ export default function Cadastrar(){
             {cadastros? <p>Aqui estão seus cadastros</p>:<p>Nenhum cadastro encontrado, adicione seus jogadores</p>}
             <BotaoCadastro 
                 cadastramento={ativarCadastramento}/>
-            {cadastrar && <TelaCadastro
+            {editavel && <EditCadastro i={editIndex} editavel={desativarEdicao}/>}
+            {cadastrar && <AddCadastro
             cadastramento={desativarCadastramento}/>}
             {cadastros && 
                 cadastros.map((jogador,index)=>
                     (<Ficha 
                         key={index}
+                        id = {index}
                         nome={jogador.nome}
                         nivel={jogador.nivel}
                         genero={jogador.genero}
+                        edit={indiceEdit}
+                        apagar={Apagar}
                         />))}
             <div
                 style={{
