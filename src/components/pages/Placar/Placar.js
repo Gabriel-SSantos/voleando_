@@ -37,8 +37,6 @@ export default function Placar(){
 
     const location = useLocation()
     const dadosRecebido = location.state?.meustimes
-    const indices = location.state?.indices
-    console.log("Meus times tam: ",indices)
     const [timesAtuais,setTimesAtuais] = useState(["time1","time2"])
     const [meusTimes,setMeusTimes] = useState(["time1","time2"])
     const [time,setTime] = useState([0,0])
@@ -67,10 +65,14 @@ export default function Placar(){
         })
         setTime(atuliazar)
     }
-    console.log(pntVencedor)
     useEffect(()=>{
+        let v = []
         if (dadosRecebido.length>0){
-            let v = [dadosRecebido[0],dadosRecebido[1]]
+            
+            if(dadosRecebido[0].length > 0)
+            v = [dadosRecebido[0][0].nome,dadosRecebido[1][0].nome]
+            else
+            v = [dadosRecebido[0],dadosRecebido[1]]
             setTimesAtuais(v)
             setMeusTimes(dadosRecebido)
         }
@@ -91,7 +93,6 @@ export default function Placar(){
             }, 1000);
             return () => clearTimeout(timer)
         } 
-        console.log(time)
     },[time])
     return(
         <div className={`${style.placar_container}`}>

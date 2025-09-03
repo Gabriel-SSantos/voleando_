@@ -102,7 +102,8 @@ export default function Times(){
                         mark={mark}
                         cor={busca(index)}
                         />)})}
-                        <div><LinkButton to={"/"} text={"Montar Times"}/></div>
+                        <div><LinkButton to={"/embaralhamento"} text={"Montar Times"} state={{jogadores:jogadorespresentes}}/></div>
+                        
             <div
                 style={{
                     marginBottom: "80px",

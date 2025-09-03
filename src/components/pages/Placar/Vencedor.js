@@ -23,7 +23,25 @@ export default function Vencedor(){
     const dadosRecebido = location.state?.meustimes
     const vencedor = location.state?.vencedor
     proxduelos(vencedor,dadosRecebido)
-   
+    console.log(dadosRecebido)
+    if(dadosRecebido[0].length > 0){
+        return(
+            <div className={`${style.vencedor_container}`}>
+            <h1>Parabéns!!</h1>
+            <p>Vencedor: Time {dadosRecebido[vencedor][0].nome}</p>
+            <p>{dadosRecebido[vencedor].map((item,id)=>
+                <li key={id}>{item.nome}</li>
+            )}</p>
+            <BiTrophy size={220}/>
+            Proximo jogo: <p>{dadosRecebido[0].map((item,id)=>
+                <li key={id}>{item.nome}</li>
+            )}</p> <spam>x</spam> <p>{dadosRecebido[1].map((item,id)=>
+                <li key={id}>{item.nome}</li>
+            )}</p>
+            <LinkButton to={"/placar"} text={"Pronto"} state={{meustimes:dadosRecebido}}/>
+        </div>
+        )
+    }
     return(
         <div className={`${style.vencedor_container}`}>
             <h1>Parabéns!!</h1>

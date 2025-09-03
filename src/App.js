@@ -10,6 +10,7 @@ import PlacarConfig from './components/pages/Placar/PlacarConfig';
 import Vencedor from './components/pages/Placar/Vencedor';
 import Padrao from './components/pages/Padrao';
 import Times from './components/pages/MontarTimes/MontarTimes';
+import Embaralhamento from './components/pages/MontarTimes/Embaralhamento';
 
 function App() {
 
@@ -50,6 +51,8 @@ function App() {
             <Route path='/placarvencedor' Component={Vencedor}></Route>
             <Route path='/cadastros' Component={Cadastrar}></Route>
             <Route path='/times' Component={Times}></Route>
+
+            <Route path='/embaralhamento' Component={Embaralhamento}></Route>
             <Route exact path='/classificacoes' Component={Ranking}></Route>
 
           </Routes>

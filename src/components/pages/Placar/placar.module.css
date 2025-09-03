@@ -99,3 +99,12 @@
 .vencedor_container p{
     font-size: 20px;
 }
+.vencedor_container li{
+    display: inline;
+    margin-left: 10px;
+    font-size: 20px;
+}
+.vencedor_container span{
+    font-weight: bold;
+    font-size: 20px;
+}

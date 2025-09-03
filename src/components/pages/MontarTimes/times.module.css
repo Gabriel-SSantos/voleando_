@@ -9,6 +9,44 @@
 .cad_container p{
     font-size: 19px;
 }
+.cardFicha{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    border: solid;   
+    width: 90%;
+    margin-top: 7px;
+    margin-bottom: 2px;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 0.5em;
+    text-decoration: none;
+    transition: 0.5s;
+    margin: 0.2em;
+    margin-bottom: 15px;
+    border: solid;
+    border-color: #0050D8;
+    box-shadow: 4px 4px #FFC800;
+}
+.cardFicha li{
+    font-size: 20px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.cardFicha div{
+    display: flex;
+    margin: 5px;
+}
+
+.cardFicha p{
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+
 .card{
     display: flex;
     justify-content: space-evenly;
