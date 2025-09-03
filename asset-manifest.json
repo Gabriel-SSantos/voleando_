@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/voleando_/static/css/main.414c3e55.css",
-    "main.js": "/voleando_/static/js/main.cd2ae58a.js",
+    "main.css": "/voleando_/static/css/main.c98d96c0.css",
+    "main.js": "/voleando_/static/js/main.a97ab2bd.js",
     "static/media/savings.svg": "/voleando_/static/media/savings.25a5174d3c0ce57522d68f3ba58b7407.svg",
     "index.html": "/voleando_/index.html",
-    "main.414c3e55.css.map": "/voleando_/static/css/main.414c3e55.css.map",
-    "main.cd2ae58a.js.map": "/voleando_/static/js/main.cd2ae58a.js.map"
+    "main.c98d96c0.css.map": "/voleando_/static/css/main.c98d96c0.css.map",
+    "main.a97ab2bd.js.map": "/voleando_/static/js/main.a97ab2bd.js.map"
   },
   "entrypoints": [
-    "static/css/main.414c3e55.css",
-    "static/js/main.cd2ae58a.js"
+    "static/css/main.c98d96c0.css",
+    "static/js/main.a97ab2bd.js"
   ]
 }
